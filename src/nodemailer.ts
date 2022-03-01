@@ -1,5 +1,5 @@
-'use strict';
-const nodemailer = require("nodemailer");
+import nodemailer from 'nodemailer';
+import  {smtpTransportConfig, mailOptionsConfig} from './config/config'
 
 nodemailer.createTestAccount((err, account) => {
   if (err) {
@@ -10,14 +10,11 @@ nodemailer.createTestAccount((err, account) => {
   console.log('Credentials obtained, sending message...');
   let transporter = nodemailer.createTransport(
     {
-
-      service: 'gmail',
+      service: smtpTransportConfig.service,
       auth: {
-        user: 'cryptonstudiotest@gmail.com',
-        pass: 'myjbaz-4zijri-tofcoT',
+        user: smtpTransportConfig.auth.user,
+        pass: smtpTransportConfig.auth.pass,
       },
-      // logger: true,
-      // transactionLog: true // include SMTP traffic in the logs
     },
     {
       from: 'Nodemailer <cryptonstudiotest@gmail.com>',
@@ -27,9 +24,10 @@ nodemailer.createTestAccount((err, account) => {
     }
   );
   let message = {
-    to: 'Nodemailer <lidamilos@gmail.com>',
-    subject: 'Nodemailer is unicode friendly ✔' + Date.now(),
-    html: { path: 'src/assets/confirm.html' },
+    from: mailOptionsConfig.emailFrom,
+    to : mailOptionsConfig.emailTo,
+    subject : mailOptionsConfig.subject,
+    html: { path: 'src/templates/confirm.hbs' },
     attachments: [
     ],
   };
