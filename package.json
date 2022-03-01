@@ -2,12 +2,11 @@
   "name": "nodemailer",
   "version": "1.0.0",
   "description": "email sending service",
-  "main": "nodemailer.ts",
-  "type": "module",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -e ts  --exec \"npm run compile\"",
-    "compile": "tsc && node src/nodemailer.ts",
+    "compile": "tsc && node index.ts",
     "build": "tsc"
   },
   "repository": {
@@ -26,6 +25,6 @@
     "handlebars": "^4.7.7",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
-    "typescript": "^4.6.2"
+    "typescript": "^3.9.7"
   }
 }

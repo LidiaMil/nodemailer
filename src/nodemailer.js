@@ -1,5 +1,8 @@
-import nodemailer from 'nodemailer';
-import  {smtpTransportConfig, mailOptionsConfig} from './config/config'
+// import nodemailer from 'nodemailer';
+var  {smtpTransportConfig, mailOptionsConfig} = require( './config/config.js' )
+var nodemailer = require('nodemailer');
+var handlebars = require('handlebars');
+var fs = require('fs');
 
 nodemailer.createTestAccount((err, account) => {
   if (err) {
@@ -15,12 +18,6 @@ nodemailer.createTestAccount((err, account) => {
         user: smtpTransportConfig.auth.user,
         pass: smtpTransportConfig.auth.pass,
       },
-    },
-    {
-      from: 'Nodemailer <cryptonstudiotest@gmail.com>',
-      headers: {
-        'X-Laziness-level': 1000 
-      }
     }
   );
   let message = {
